@@ -1,0 +1,16 @@
+[
+  {
+    "ID": 1,
+    "CodigoFiscal": "12345678900",
+    "InscricaoEstatudal": null,
+    "Nome": "Jo\u00E3o",
+    "NomeFantasia": "Pipoqueira",
+    "Endereco": "Rua 20",
+    "Numero": "44",
+    "Bairro": "Nobre",
+    "Cidade": "Abadia de Goi\u00E1s",
+    "Estado": "Go",
+    "DataNascimento": "1985-07-12T00:00:00",
+    "ImagemUrl": null
+  }
+]

@@ -1,0 +1,37 @@
+@model IEnumerable<ClienteManager.Models.Cliente>
+@{ ViewData["Title"] = "Lista de Clientes"; Layout = "_Layout";}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>@ViewData["Title"]</h1>
+    <a asp-action="Create" class="btn btn-primary">Novo Cliente</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.CodigoFiscal)</th>
+                        <th>@Html.DisplayNameFor(model => model.Cidade)</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+            @foreach (var item in Model) {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CodigoFiscal)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Cidade)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-sm btn-outline-secondary">Editar</a>
+                            <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-sm btn-outline-danger">Excluir</a>
+                        </td>
+                    </tr>
+            }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

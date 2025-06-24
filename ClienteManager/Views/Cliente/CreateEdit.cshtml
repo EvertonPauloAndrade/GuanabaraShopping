@@ -1,0 +1,106 @@
+@model ClienteManager.ViewModels.ClienteViewModel
+@{
+    var isEditMode = Model.Cliente.ID != 0;
+    ViewData["Title"] = isEditMode ? "Editar Cliente" : "Novo Cliente";
+    Layout = "_Layout";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>@ViewData["Title"]</h1>
+    <div>
+        @if (isEditMode) { <a asp-action="ExportJson" asp-route-id="@Model.Cliente.ID" class="btn btn-outline-info me-2">Exportar para JSON</a> }
+        <a asp-action="Index" class="btn btn-secondary">Voltar para a Lista</a>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form asp-action="Save" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Cliente.ID" />
+            <input type="hidden" asp-for="Cliente.ImagemUrl" />
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Cliente.Nome" class="form-label"></label>
+                    <input asp-for="Cliente.Nome" class="form-control" />
+                    <span asp-validation-for="Cliente.Nome" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Cliente.NomeFantasia" class="form-label"></label>
+                    <input asp-for="Cliente.NomeFantasia" class="form-control" />
+                    <span asp-validation-for="Cliente.NomeFantasia" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Cliente.CodigoFiscal" class="form-label"></label>
+                    <input asp-for="Cliente.CodigoFiscal" class="form-control" />
+                    <span asp-validation-for="Cliente.CodigoFiscal" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Cliente.InscricaoEstatudal" class="form-label"></label>
+                    <input asp-for="Cliente.InscricaoEstatudal" class="form-control" />
+                    <span asp-validation-for="Cliente.InscricaoEstatudal" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <h5>Endereço</h5>
+            <div class="row">
+                 <div class="col-md-8 mb-3">
+                    <label asp-for="Cliente.Endereco" class="form-label"></label>
+                    <input asp-for="Cliente.Endereco" class="form-control" />
+                    <span asp-validation-for="Cliente.Endereco" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="Cliente.Numero" class="form-label"></label>
+                    <input asp-for="Cliente.Numero" class="form-control" />
+                    <span asp-validation-for="Cliente.Numero" class="text-danger"></span>
+                </div>
+            </div>
+             <div class="row">
+                 <div class="col-md-4 mb-3">
+                    <label asp-for="Cliente.Bairro" class="form-label"></label>
+                    <input asp-for="Cliente.Bairro" class="form-control" />
+                    <span asp-validation-for="Cliente.Bairro" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="Cliente.Cidade" class="form-label"></label>
+                    <select asp-for="Cliente.Cidade" asp-items="@Model.Cidades" class="form-select">
+                        <option value="">-- Selecione a Cidade --</option>
+                    </select>
+                    <span asp-validation-for="Cliente.Cidade" class="text-danger"></span>
+                </div>
+                 <div class="col-md-4 mb-3">
+                    <label asp-for="Cliente.Estado" class="form-label"></label>
+                    <input asp-for="Cliente.Estado" class="form-control" maxlength="2" />
+                    <span asp-validation-for="Cliente.Estado" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Cliente.DataNascimento" class="form-label"></label>
+                    <input asp-for="Cliente.DataNascimento" class="form-control" type="date"/>
+                    <span asp-validation-for="Cliente.DataNascimento" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Imagem" class="form-label"></label>
+                     @if (isEditMode && !string.IsNullOrEmpty(Model.Cliente.ImagemUrl))
+                     {
+                        <div class="mb-2">
+                            <img src="@Url.Content(Model.Cliente.ImagemUrl)" alt="Imagem do Cliente" style="max-width: 150px; max-height: 150px;" class="img-thumbnail" />
+                            <p class="form-text">Imagem atual. Envie um novo arquivo para substituir.</p>
+                        </div>
+                     }
+                    <input asp-for="Imagem" class="form-control" type="file" />
+                    <span asp-validation-for="Imagem" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group mt-4 d-flex justify-content-end">
+                <button type="submit" class="btn btn-success">Salvar Cliente</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

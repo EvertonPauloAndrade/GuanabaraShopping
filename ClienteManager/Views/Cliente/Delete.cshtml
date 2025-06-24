@@ -1,0 +1,23 @@
+@model ClienteManager.Models.Cliente
+@{ ViewData["Title"] = "Excluir Cliente"; Layout = "_Layout";}
+
+<h1>@ViewData["Title"]</h1>
+<h3 class="text-danger">Você tem certeza que quer excluir este cliente?</h3>
+<div class="card shadow-sm mt-4">
+    <div class="card-header"><h4>@Html.DisplayFor(model => model.Nome)</h4></div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.CodigoFiscal)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.CodigoFiscal)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NomeFantasia)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.NomeFantasia)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Cidade)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Cidade) - @Html.DisplayFor(model => model.Estado)</dd>
+        </dl>
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="ID" />
+            <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

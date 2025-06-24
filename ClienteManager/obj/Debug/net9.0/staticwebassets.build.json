@@ -1,0 +1,20 @@
+{
+  "Version": 1,
+  "Hash": "di2zMcTikzNws5obIufy82ygsUwMMQd3MV4lT/a2mtQ=",
+  "Source": "ClienteManager",
+  "BasePath": "_content/ClienteManager",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ClienteManager/wwwroot",
+      "Source": "ClienteManager",
+      "ContentRoot": "/home/everton/Documentos/PROGRAMACAOWEBI/GuanabaraShopping/ClienteManager/wwwroot/",
+      "BasePath": "_content/ClienteManager",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [],
+  "Endpoints": []
+}
